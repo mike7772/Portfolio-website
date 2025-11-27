@@ -114,14 +114,14 @@ export const DialogHeader: React.FC<{ children: React.ReactNode }> = ({ children
   </div>
 );
 
-export const DialogTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <h2 className="text-lg font-semibold leading-none tracking-tight">
+export const DialogTitle: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <h2 className={`text-lg font-semibold leading-none tracking-tight ${className}`}>
     {children}
   </h2>
 );
 
-export const DialogDescription: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <p className="text-sm text-muted-foreground">
+export const DialogDescription: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <p className={`text-sm text-muted-foreground ${className}`}>
     {children}
   </p>
 );

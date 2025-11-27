@@ -1,89 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, Code, Layout, Server, Database, GitCommit, ArrowUpRight, Image as ImageIcon } from 'lucide-react';
+import { ChevronDown, Code, Layout, Server, Database, GitCommit, ArrowUpRight, Image as ImageIcon, ExternalLink, Globe } from 'lucide-react';
 import { Badge, Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/Primitives';
 import { Project } from '../types';
-
-interface ProjectWithScreenshots extends Project {
-  screenshots?: string[];
-  fullDescription?: string;
-  features?: string[];
-}
-
-const projects: ProjectWithScreenshots[] = [
-  {
-    id: 'p_esx',
-    name: 'ESX Crowdfunding Platform',
-    company: '360Ground / ESX',
-    role: 'System Architect',
-    year: 'Ongoing',
-    stack: ['Microservices', 'Node.js', 'React', 'PostgreSQL', 'Finance'],
-    metric: 'Secure Trading Architecture',
-    description: 'A comprehensive crowdfunding platform for the Ethiopian Securities Exchange.',
-    fullDescription: 'Designed the system architecture and implemented a comprehensive crowdfunding platform for ESX. The platform acts as a critical bridge facilitating secure interactions between investors, share providers, companies, and campaigns, ensuring compliance and data integrity.',
-    features: ['Investor/Campaign Portals', 'Real-time Share Tracking', 'Secure Document Handling', 'Regulatory Compliance Tools', 'Dynamic Reporting']
-  },
-  {
-    id: 'p1',
-    name: 'Permit Issuance System',
-    company: '360Ground',
-    role: 'Lead Developer',
-    year: '2023',
-    stack: ['Node.js', 'React', 'Microservices', 'Form Engine'],
-    metric: 'Dynamic Form Creation',
-    description: 'A comprehensive permit issuance platform for the Ethiopian government.',
-    fullDescription: 'Architected a notification microservice to streamline user communications via email and SMS. Developed an admin panel that allows non-technical staff to create dynamic forms on the fly, reducing processing time by 25%.',
-    features: ['Dynamic Form Builder', 'SMS/Email Notifications', 'Role-based Access Control', 'Automated Workflows']
-  },
-  {
-    id: 'p2',
-    name: 'JEGS Digitization',
-    company: 'Govt. of Ethiopia',
-    role: 'Full Stack',
-    year: '2023',
-    stack: ['React', 'D3.js', 'Python', 'Interactive UI'],
-    metric: 'Graphical Org Chart',
-    description: 'Digitization of the national Job Evaluation and Grading System.',
-    fullDescription: 'Digitized Ethiopia\'s Job Evaluation and Grading System, improving evaluation accuracy and speed by 50% with a custom graphical organizational chart builder. This tool allows HR professionals to visually restructure departments via drag-and-drop.',
-    features: ['Drag-and-drop Org Chart', 'Real-time Grading Calculation', 'Exportable Reports', 'Version Control for Charts']
-  },
-  {
-    id: 'p3',
-    name: 'Recruitment Automation',
-    company: 'Mereb Tech',
-    role: 'Tech Lead',
-    year: '2025',
-    stack: ['Node.js', 'AI Integration', 'React', 'CV Parsing'],
-    metric: 'AI Interview Flow',
-    description: 'Automated developer hiring platform with AI capabilities.',
-    fullDescription: 'Worked on a recruitment automation system that streamlined developer hiring by sending automated coding challenges, conducting AI-powered interviews, and parsing CVs for skill/experience matching. Improved hiring efficiency by reducing manual screening.',
-    features: ['Automated Coding Challenges', 'Video Interview Recording', 'AI Resume Scoring', 'ATS Integration']
-  },
-  {
-    id: 'p4',
-    name: 'MedaPay Gateway',
-    company: '360Ground',
-    role: 'Contributor',
-    year: '2023',
-    stack: ['Django', 'React', 'Docker', 'Fintech'],
-    metric: 'Payment Widget SDK',
-    description: 'Seamlessly integratable payment gateway for Ethiopian merchants.',
-    fullDescription: 'Contributed to the development of MedaPay, focusing on the frontend SDK widget that allows merchants to easily embed payment forms. Ensured the backend transaction processing was secure, idempotent, and compliant with local financial regulations.',
-    features: ['Embeddable Payment Widget', 'Idempotent Transactions', 'Merchant Dashboard', 'Webhook System']
-  }
-];
+import { projects } from '../data/projects';
 
 export const ProjectLog: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>(projects[0].id);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<ProjectWithScreenshots | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
-  const openModal = (project: ProjectWithScreenshots, e: React.MouseEvent) => {
+  const openModal = (project: Project, e: React.MouseEvent) => {
     e.stopPropagation();
     setSelectedProject(project);
     setModalOpen(true);
@@ -218,58 +150,91 @@ export const ProjectLog: React.FC = () => {
 
       {/* Detail Modal */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent onClose={() => setModalOpen(false)} className="sm:max-w-[800px]">
+        <DialogContent onClose={() => setModalOpen(false)} className="sm:max-w-[900px]">
            <DialogHeader>
               <div className="flex items-center gap-3 mb-2">
                  <Badge variant="outline">{selectedProject?.year}</Badge>
                  <span className="text-xs font-mono text-muted-foreground">{selectedProject?.company}</span>
+                 {selectedProject?.url && (
+                    <a href={selectedProject.url} target="_blank" rel="noopener noreferrer" className="ml-auto md:ml-0">
+                       <Badge variant="secondary" className="hover:bg-emerald-500/10 hover:text-emerald-600 transition-colors cursor-pointer gap-1">
+                          <Globe size={10} /> Live
+                       </Badge>
+                    </a>
+                 )}
               </div>
-              <DialogTitle>{selectedProject?.name}</DialogTitle>
-              <DialogDescription>{selectedProject?.metric}</DialogDescription>
+              <DialogTitle className="text-2xl">{selectedProject?.name}</DialogTitle>
+              <DialogDescription className="text-base">{selectedProject?.metric}</DialogDescription>
            </DialogHeader>
 
-           <div className="mt-4 space-y-6">
-              {/* Screenshots Placeholder Carousel */}
-              <div className="grid grid-cols-2 gap-3 h-48 sm:h-64">
-                 <div className="col-span-1 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-border flex flex-col items-center justify-center p-4 text-center">
-                    <ImageIcon className="h-8 w-8 text-zinc-300 dark:text-zinc-600 mb-2" />
-                    <span className="text-xs text-muted-foreground">Dashboard UI Mockup</span>
-                 </div>
-                 <div className="col-span-1 grid grid-rows-2 gap-3">
-                    <div className="rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-border flex items-center justify-center">
-                       <span className="text-[10px] text-muted-foreground">Mobile View</span>
+           <div className="mt-6 space-y-8">
+              {/* Screenshots Gallery */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 {selectedProject?.screenshots && selectedProject.screenshots.length > 0 ? (
+                    selectedProject.screenshots.map((src, idx) => (
+                       <div key={idx} className="relative aspect-video rounded-lg overflow-hidden border border-border bg-muted group">
+                          <img 
+                            src={src} 
+                            alt={`${selectedProject.name} screenshot ${idx + 1}`}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            onError={(e) => {
+                               // Fallback if image not found
+                               (e.target as HTMLImageElement).style.display = 'none';
+                               (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                            }}
+                          />
+                          {/* Fallback Placeholder displayed if img fails */}
+                          <div className="hidden absolute inset-0 flex flex-col items-center justify-center bg-secondary/50 p-4 text-center">
+                             <span className="text-xs text-muted-foreground font-mono mb-2">Image not found</span>
+                             <span className="text-[10px] text-muted-foreground opacity-50">{src}</span>
+                          </div>
+                       </div>
+                    ))
+                 ) : (
+                    <div className="col-span-full h-48 rounded-lg bg-secondary/30 border border-border border-dashed flex items-center justify-center">
+                       <span className="text-muted-foreground text-sm">No screenshots available</span>
                     </div>
-                    <div className="rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-border flex items-center justify-center">
-                       <span className="text-[10px] text-muted-foreground">Admin Panel</span>
-                    </div>
-                 </div>
+                 )}
               </div>
 
-              {/* Deep Dive Text */}
-              <div className="space-y-4">
-                 <h4 className="text-sm font-semibold">Architectural Overview</h4>
-                 <p className="text-sm text-muted-foreground leading-relaxed">
-                    {selectedProject?.fullDescription || selectedProject?.description}
-                 </p>
+              {/* Info Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <div className="md:col-span-2 space-y-4">
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Architectural Overview</h4>
+                    <p className="text-sm text-foreground leading-relaxed">
+                       {selectedProject?.fullDescription || selectedProject?.description}
+                    </p>
+                 </div>
                  
-                 <h4 className="text-sm font-semibold">Key Features Delivered</h4>
-                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {selectedProject?.features?.map((feature, i) => (
-                       <li key={i} className="text-xs text-muted-foreground flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                          {feature}
-                       </li>
-                    ))}
-                 </ul>
+                 <div className="space-y-4">
+                    <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Key Features</h4>
+                    <ul className="space-y-2">
+                       {selectedProject?.features?.map((feature, i) => (
+                          <li key={i} className="text-xs text-foreground/80 flex items-start gap-2">
+                             <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1 shrink-0" />
+                             {feature}
+                          </li>
+                       ))}
+                    </ul>
+                 </div>
               </div>
 
-              <div className="pt-4 flex justify-end">
-                 <Button onClick={() => setModalOpen(false)}>Close Project Log</Button>
+              {/* Footer Actions */}
+              <div className="pt-6 border-t border-border flex justify-between items-center">
+                 <Button variant="outline" onClick={() => setModalOpen(false)}>Close Details</Button>
+                 
+                 {selectedProject?.url && (
+                    <Button 
+                       className="gap-2" 
+                       onClick={() => window.open(selectedProject.url, '_blank')}
+                    >
+                       Visit Live Site <ExternalLink size={14} />
+                    </Button>
+                 )}
               </div>
            </div>
         </DialogContent>
       </Dialog>
-
     </section>
   );
 };

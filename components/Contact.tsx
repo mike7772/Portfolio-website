@@ -38,11 +38,11 @@ export const Contact: React.FC = () => {
             <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">Direct Contact</div>
              <div className="flex gap-3">
                 <Button variant="outline" className="gap-2 font-mono text-xs" onClick={() => {
-                   navigator.clipboard.writeText('michaelasnake.dev@gmail.com');
+                   navigator.clipboard.writeText('michaelasnake644@gmail.com');
                 }}>
-                   <Copy size={14} /> michaelasnake.dev@gmail.com
+                   <Copy size={14} /> michaelasnake644@gmail.com
                 </Button>
-                <Button variant="ghost" className="gap-2 text-xs" onClick={() => window.open('mailto:michaelasnake.dev@gmail.com')}>
+                <Button variant="ghost" className="gap-2 text-xs" onClick={() => window.open('mailto:michaelasnake644@gmail.com')}>
                    <Mail size={14} /> Open Mail Client
                 </Button>
              </div>

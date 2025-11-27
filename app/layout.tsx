@@ -27,7 +27,7 @@ export default function RootLayout({
         <footer className="w-full border-t border-border py-10 mt-10 relative z-10 bg-background/50 backdrop-blur-sm">
           <div className="max-w-5xl mx-auto px-4 text-center">
             <p className="text-xs font-medium text-muted-foreground">
-              © {new Date().getFullYear()} Michael Asnake. Crafted with Next.js, Tailwind, and Motion.
+              © {new Date().getFullYear()} Michael Asnake. Crafted with React, Tailwind, and Motion.
             </p>
           </div>
         </footer>

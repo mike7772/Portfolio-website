@@ -7,6 +7,10 @@ export interface Project {
   description: string;
   company: string;
   year: string;
+  url?: string;
+  screenshots?: string[];
+  fullDescription?: string;
+  features?: string[];
 }
 
 export interface Service {
