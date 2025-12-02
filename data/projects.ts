@@ -12,27 +12,28 @@ export const projects: Project[] = [
     description: 'A comprehensive crowdfunding platform for the Ethiopian Securities Exchange.',
     fullDescription: 'Designed the system architecture and implemented a comprehensive crowdfunding platform for ESX. The platform acts as a critical bridge facilitating secure interactions between investors, share providers, companies, and campaigns, ensuring compliance and data integrity.',
     features: ['Investor/Campaign Portals', 'Real-time Share Tracking', 'Secure Document Handling', 'Regulatory Compliance Tools', 'Dynamic Reporting'],
-    url: 'https://esx.et', 
+    url: 'https://cfipstaging.esx.et', 
     screenshots: [
-        'https://images.unsplash.com/photo-1611974765270-ca12586343bb?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000'
+        '/projects/esx/landing.png'
     ]
   },
   {
     id: 'p1',
     name: 'Permit Issuance System',
-    company: '360Ground',
+    company: '360Ground / Govt.',
     role: 'System Architect & Lead Developer',
     year: '2023',
     stack: ['Node.js', 'React', 'Microservices', 'Form Engine'],
     metric: 'Dynamic Form Engine',
     description: 'National Business Portal for the Ethiopian government.',
-    fullDescription: 'Architected a notification microservice to streamline user communications via email and SMS. Developed an admin panel that allows non-technical staff to create dynamic forms on the fly, reducing processing time by 25%.',
-    features: ['Dynamic Form Builder', 'SMS/Email Notifications', 'Role-based Access Control', 'Automated Workflows'],
-    url: 'http://new.business.gov.et',
+    fullDescription: 'A centralized portal for the Ministry of Innovation and Technology (MInT) allowing citizens to apply for government services like Construction Permits and Trade Licenses. Features a powerful dynamic form engine that allows admins to build complex, multi-step wizards without code.',
+    features: ['Dynamic Form Builder (Wizard)', 'Service Status Tracking', 'Unified User Profile', 'Regional Service Provider Mapping', 'Automated Workflows'],
+    url: 'https://new.business.gov.et',
     screenshots: [
-        'https://images.unsplash.com/photo-1555421689-492a18d9c3ad?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000'
+        '/projects/nbp/landing.png',
+        '/projects/nbp/dashboard.png',
+        '/projects/nbp/form.png',
+        '/projects/nbp/process.png'
     ]
   },
   {
@@ -48,8 +49,10 @@ export const projects: Project[] = [
     features: ['Drag-and-drop Org Chart', 'Real-time Grading Calculation', 'Exportable Reports', 'Version Control for Charts'],
     url: null,
     screenshots: [
-        'https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1000'
+        '/projects/jegs/editor.png',
+        '/projects/jegs/list.png',
+        '/projects/jegs/menu.png',
+        '/projects/jegs/details.png'
     ]
   },
   {
@@ -62,11 +65,12 @@ export const projects: Project[] = [
     metric: 'AI Interview Flow',
     description: 'Automated developer hiring platform with AI capabilities.',
     fullDescription: 'Worked on a recruitment automation system that streamlined developer hiring by sending automated coding challenges, conducting AI-powered interviews, and parsing CVs for skill/experience matching. Improved hiring efficiency by reducing manual screening.',
-    features: ['Automated Coding Challenges', 'AI Interview', 'AI Resume Scoring'],
+    features: ['Automated Coding Challenges', 'AI Interview', 'AI Resume Scoring', 'Candidate Pipeline Management'],
     url: 'https://talent.mereb.tech',
     screenshots: [
-        'https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000'
+        '/projects/recruitment/jobs_list.png',
+        '/projects/recruitment/candidate_pool.png',
+        '/projects/recruitment/job_detail.png'
     ]
   },
   {
@@ -81,9 +85,6 @@ export const projects: Project[] = [
     fullDescription: 'Contributed to the development of MedaPay, focusing on the frontend SDK widget that allows merchants to easily embed payment forms. Ensured the backend transaction processing was secure, idempotent, and compliant with local financial regulations.',
     features: ['Embeddable Payment Widget', 'Idempotent Transactions', 'Merchant Dashboard', 'Webhook System'],
     url: null,
-    screenshots: [
-        'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000'
-    ]
+    screenshots: []
   }
 ];
